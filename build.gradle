@@ -1,21 +1,48 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'idea'
+apply plugin: 'maven-publish'
 
 group = 'com.jeeframework'
 version = '0.0.1-SNAPSHOT'
 
 description = """jeeframework"""
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
+defaultTasks 'clean', 'jar'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "http://120.24.161.170:8081/nexus/content/repositories/snapshots"
+            credentials {
+                username 'admin'
+                password 'admin123'
+            }
+        }
+    }
+}
 
 
 repositories {
-        
-     maven { url "http://120.24.161.170:8081/nexus/content/groups/public/" }
-     maven { url "http://repo.maven.apache.org/maven2" }
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://120.24.161.170:8081/nexus/content/groups/public/" }
 }
 dependencies {
     compile group: 'junit', name: 'junit', version:'4.12'
