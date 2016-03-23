@@ -1,4 +1,4 @@
-# jeeframework
-##极易海量互联网开发框架  
+# jeeframework  工具包
+##适用于 android 和 j2ee的通用程序  
 ***
-整合spring mvc/struts2、spring、mybatis适合互联网项目的开发框架  
+整合字符串、日期、正则等功能  
