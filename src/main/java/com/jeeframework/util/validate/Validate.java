@@ -16,13 +16,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * У���࣬��ݸ�������ж��Ƿ�ɹ�
+ * 校验参数是否正确
  *
- * @author lanceyan�������޸��ߣ�
- * @version 1.0���°汾�ţ�
- * @see �ο���JavaDoc
  */
-
 public class Validate {
     public static final String emailAddressPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
 

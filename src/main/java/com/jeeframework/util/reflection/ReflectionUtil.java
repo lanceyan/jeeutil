@@ -1,14 +1,3 @@
-/**
- * Copyright (C) 1998-2007 JEEFRAMEWORK Inc.All Rights Reserved.
- * 																	
- * FileName��ReflectionUtil.java					
- *			
- * Description����Ҫ�������ļ�������							 												
- * History��
- * �汾��    ����      ����       ��Ҫ������ز���
- *  1.0   lanceyan  2008-6-16  Create	
- */
-
 package com.jeeframework.util.reflection;
 
 import java.lang.reflect.Field;
@@ -16,12 +5,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * 反射工具类
  *
- * @author lanceyan�������޸��ߣ�
- * @version 1.0���°汾�ţ�
- * @see �ο���JavaDoc
+ * @author lanceyan
  */
-
 public class ReflectionUtil
 {
 

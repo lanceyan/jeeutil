@@ -1,13 +1,3 @@
-/**
- * Copyright (C) 2015-2015 JEEFRAMEWORK Inc.All Rights Reserved.
- * 																	
- * FileName锟斤拷DateFormat.java					
- *			
- * Description锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟侥硷拷锟斤拷锟斤拷锟斤拷							 												
- * History锟斤拷
- * 锟芥本锟斤拷    锟斤拷锟斤拷           锟斤拷锟斤拷          锟斤拷要锟斤拷锟斤拷锟斤拷夭锟斤拷锟�
- *  1.0   lanceyan        2008-7-1           Create	
- */
 
 package com.jeeframework.util.format;
 
@@ -22,7 +12,7 @@ public class DateFormat {
     public static final int DT_HHMM             = 4 ;
     public static final int DT_YYYY             = 5 ;
     public static final int DT_MMDDYYYYHHMMSS   = 6 ;
-    public static final int DT_YYYY_MM_DD_EEEE    = 7 ; //ex:2007-06-15 锟斤拷锟斤拷锟斤拷
+    public static final int DT_YYYY_MM_DD_EEEE    = 7 ; //ex:2007-06-15
     public static final int DT_YYMMDD    = 8 ; //ex:070602
     public static final int DT_YY_MM_DD    = 9 ;
     public static final int DT_YYYYMMDD    = 10 ; //ex:20070602
@@ -86,7 +76,7 @@ public class DateFormat {
         return dateFormat.format(date);
     }
     /**
-     * 锟斤拷指锟斤拷锟斤拷模锟斤拷转锟斤拷为锟斤拷应锟斤拷时锟斤拷
+     * 格式化日期
      * @param strDate
      * @param nFmt
      * @return

@@ -1,27 +1,21 @@
 package com.jeeframework.util.net;
 
 import com.jeeframework.util.validate.Validate;
-import sun.net.util.IPAddressUtil;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
 
 /**
- * IPת�����ߣ���Ϊ�ų�ǿ���javaû���ṩ��
- *
- * @author hokyhu
- * @version 1.0���°汾�ţ�
- * @see �ο���JavaDoc
+ * ip 地址工具类
  */
 public class IPUtil {
-    /**
-     * ��ipv4��ʽ���ַ�תΪ�����ʽ����������C API��inet_pton
-     *
-     * @param ip �ַ��ʽ��IP
-     * @return IP��Ӧ������ֵ������ʱ���ظ���
-     */
+    private final static int INADDR4SZ = 4;
+
     public static long IP2Long(String ip) {
         if (null == ip) {
             return -1;
@@ -42,12 +36,7 @@ public class IPUtil {
         return ipLong;
     }
 
-    /**
-     * ��һ������תΪipv4��ʽ���ַ���������C API��inet_ntop
-     *
-     * @param ip ����
-     * @return �����Ӧ��ipv4�ַ�����ʱ����null��
-     */
+
     public static String Long2IP(long ip) {
         if (0 != (ip & 0xFFFFFFFF00000000L)) {
             return null;
@@ -76,8 +65,95 @@ public class IPUtil {
      * @return
      */
     public static boolean internalIp(String ip) {
-        byte[] addr = IPAddressUtil.textToNumericFormatV4(ip);
+        byte[] addr = textToNumericFormatV4(ip);
         return internalIp(addr);
+    }
+
+    private  static byte[] textToNumericFormatV4(String src)
+    {
+        if (src.length() == 0) {
+            return null;
+        }
+
+        byte[] res = new byte[INADDR4SZ];
+        String[] s = src.split("\\.", -1);
+        long val;
+        try {
+            switch(s.length) {
+                case 1:
+                /*
+                 * When only one part is given, the value is stored directly in
+                 * the network address without any byte rearrangement.
+                 */
+
+                    val = Long.parseLong(s[0]);
+                    if (val < 0 || val > 0xffffffffL)
+                        return null;
+                    res[0] = (byte) ((val >> 24) & 0xff);
+                    res[1] = (byte) (((val & 0xffffff) >> 16) & 0xff);
+                    res[2] = (byte) (((val & 0xffff) >> 8) & 0xff);
+                    res[3] = (byte) (val & 0xff);
+                    break;
+                case 2:
+                /*
+                 * When a two part address is supplied, the last part is
+                 * interpreted as a 24-bit quantity and placed in the right
+                 * most three bytes of the network address. This makes the
+                 * two part address format convenient for specifying Class A
+                 * network addresses as net.host.
+                 */
+
+                    val = Integer.parseInt(s[0]);
+                    if (val < 0 || val > 0xff)
+                        return null;
+                    res[0] = (byte) (val & 0xff);
+                    val = Integer.parseInt(s[1]);
+                    if (val < 0 || val > 0xffffff)
+                        return null;
+                    res[1] = (byte) ((val >> 16) & 0xff);
+                    res[2] = (byte) (((val & 0xffff) >> 8) &0xff);
+                    res[3] = (byte) (val & 0xff);
+                    break;
+                case 3:
+                /*
+                 * When a three part address is specified, the last part is
+                 * interpreted as a 16-bit quantity and placed in the right
+                 * most two bytes of the network address. This makes the
+                 * three part address format convenient for specifying
+                 * Class B net- work addresses as 128.net.host.
+                 */
+                    for (int i = 0; i < 2; i++) {
+                        val = Integer.parseInt(s[i]);
+                        if (val < 0 || val > 0xff)
+                            return null;
+                        res[i] = (byte) (val & 0xff);
+                    }
+                    val = Integer.parseInt(s[2]);
+                    if (val < 0 || val > 0xffff)
+                        return null;
+                    res[2] = (byte) ((val >> 8) & 0xff);
+                    res[3] = (byte) (val & 0xff);
+                    break;
+                case 4:
+                /*
+                 * When four parts are specified, each is interpreted as a
+                 * byte of data and assigned, from left to right, to the
+                 * four bytes of an IPv4 address.
+                 */
+                    for (int i = 0; i < 4; i++) {
+                        val = Integer.parseInt(s[i]);
+                        if (val < 0 || val > 0xff)
+                            return null;
+                        res[i] = (byte) (val & 0xff);
+                    }
+                    break;
+                default:
+                    return null;
+            }
+        } catch(NumberFormatException e) {
+            return null;
+        }
+        return res;
     }
 
     public static boolean internalIp(byte[] addr) {

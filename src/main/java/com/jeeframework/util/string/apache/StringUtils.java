@@ -3,7 +3,7 @@
  * @package: com.jeeframework.util.string.apache
  * @title:   StringUtils.java 
  *
- * Copyright (c) 2016 Hyfay Limited, Inc.
+ * Copyright (c) 2016 jeeframework Limited, Inc.
  * All rights reserved.
  */
 package com.jeeframework.util.string.apache;

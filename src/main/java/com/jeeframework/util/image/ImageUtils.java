@@ -1,28 +1,18 @@
 package com.jeeframework.util.image;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.MemoryCacheImageInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Iterator;
 
 public class ImageUtils {
-	
-	 /**
-     * ����һ������������ͼƬ��ʽ<code>String</code>  
-     * 
-     * @author lanceyan
-     * @since v1.0
-     * 
-     * <p> Ĭ�Ϸ���һ���մ�</p>
-     *
-     * @param byte[] ����������
-     * 
-     * @exception IOException if an error occurs reading the
-     * information from the input source.
-     *
-     * @return ͼƬ��ʽ, as a <code>String</code>.
+
+    /**
+	 * 通过图片文件二进制判断图片类型
+	 * @param imageContent
+	 * @return
      */
 	public static String getImageType(byte[] imageContent){
 		String type = "";
@@ -42,22 +32,13 @@ public class ImageUtils {
 
 		return type;
 	}
-	
+
 	/**
-	 * 
-     * ����һ������������ͼƬ��ʽ�Ƿ���ȷ<code>boolean</code>  
-     * 
-     * @author lanceyan
-     * @since v1.0
-     * 
-	 * @param imageContent������������
-	 * @param imageType��ͼƬ��ʽ
-     *
-	 * @throws IOException if an error occurs reading the
-     * information from the input source.
-     * 
-     * @return boolean
-	 */
+	 * 检查图片类型是否是 imageType
+	 * @param imageContent
+	 * @param imageType
+     * @return
+     */
 	public static boolean checkImageType(byte[] imageContent, String imageType){
 		return imageType.equalsIgnoreCase(getImageType(imageContent));
 	}

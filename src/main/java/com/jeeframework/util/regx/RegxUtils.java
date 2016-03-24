@@ -45,8 +45,8 @@ public class RegxUtils {
 		StringBuilder sb = new StringBuilder(source.length() + 32);
 		char[] chars = source.toCharArray();
 		char ch;
-		for (int _ = 0; _ < chars.length; ++_) {
-			ch = chars[_];
+		for (int i = 0; i < chars.length; ++i) {
+			ch = chars[i];
 			String rep = specialRegxElementsTable.get(ch);
 			if (rep != null) {
 				sb.append(rep);

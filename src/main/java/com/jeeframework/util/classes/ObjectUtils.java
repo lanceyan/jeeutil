@@ -31,7 +31,6 @@ import java.util.Arrays;
  * @author Rob Harrop
  * @author Alex Ruiz
  * @since 19.03.2004
- * @see org.apache.commons.lang.ObjectUtils
  */
 public abstract class ObjectUtils {
 
@@ -175,7 +174,6 @@ public abstract class ObjectUtils {
      * ObjectUtils.toString(Boolean.TRUE) = "true"
      * </pre>
      * 
-     * @see StringUtils#defaultString(String)
      * @see String#valueOf(Object)
      * @param obj  the Object to <code>toString</code>, may be null
      * @return the passed in Object's toString, or nullStr if <code>null</code> input
@@ -197,7 +195,6 @@ public abstract class ObjectUtils {
      * ObjectUtils.toString(Boolean.TRUE, "null") = "true"
      * </pre>
      * 
-     * @see StringUtils#defaultString(String,String)
      * @see String#valueOf(Object)
      * @param obj  the Object to <code>toString</code>, may be null
      * @param nullStr  the String to return if <code>null</code> input, may be null

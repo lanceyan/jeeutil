@@ -8,10 +8,14 @@ version = '0.0.1-SNAPSHOT'
 
 description = """jeeframework"""
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 defaultTasks 'clean', 'jar'
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava

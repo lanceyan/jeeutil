@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2015-2015 JEEFRAMEWORK Inc.All Rights Reserved.
- * 																	
- * FileName��MD5Util.java					
- *			
- * Description����Ҫ�������ļ�������							 												
- * History��
- *  1.0   lanceyan        2008-6-30           Create	
- */
 
 package com.jeeframework.util.encrypt;
 

@@ -1,26 +1,9 @@
-/**
- * Copyright (C) 2015-2015 JEEFRAMEWORK Inc.All Rights Reserved.
- * 																	
- * FileName��MD5Util.java					
- *			
- * Description����Ҫ�������ļ�������							 												
- * History��
- * �汾��    ����           ����          ��Ҫ������ز���
- *  1.0   lanceyan        2008-6-30           Create	
- */
 
 package com.jeeframework.util.encrypt;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * MD5��Ӧ�ü�����
- * 
- * @author lanceyan�������޸��ߣ�
- * @version 1.0���°汾�ţ�
- * @see �ο���JavaDoc
- */
 
 public class MD5Util
 {
