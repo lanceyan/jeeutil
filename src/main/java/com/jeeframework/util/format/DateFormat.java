@@ -1,6 +1,7 @@
 
 package com.jeeframework.util.format;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -80,10 +81,9 @@ public class DateFormat {
      * @param strDate
      * @param nFmt
      * @return
-     * @throws Exception
+     * @throws ParseException
      */
-    public static Date parseDate(String strDate, int nFmt) throws Exception
-    {
+    public static Date parseDate(String strDate, int nFmt) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat();
         switch (nFmt)
         {
@@ -107,7 +107,7 @@ public class DateFormat {
         return dateFormat.parse(strDate);
     }
     
-	public static Date parseDate(String strDate, String strFmt) throws Exception {
+	public static Date parseDate(String strDate, String strFmt) throws ParseException {
 		if (strDate == null || strFmt == null) {
 			return null;
 		}
@@ -116,8 +116,7 @@ public class DateFormat {
 		return dateFormat.parse(strDate);
 	}
 	
-    public static Date parseDate(String strDate) throws Exception
-    {
+    public static Date parseDate(String strDate) throws ParseException {
         return parseDate(strDate,DateFormat.DT_YYYY_MM_DD);     
     }
 }
