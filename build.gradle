@@ -33,10 +33,10 @@ publishing {
     }
     repositories {
         maven {
-            url "http://120.24.161.170:8081/nexus/content/repositories/snapshots"
+            url "http://61.129.251.155:8088/nexus/content/repositories/releases"
             credentials {
-                username 'admin'
-                password 'admin123'
+                username "$mavenUser"
+                password "$mavenPassword"
             }
         }
     }
