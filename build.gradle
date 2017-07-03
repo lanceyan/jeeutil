@@ -4,7 +4,7 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
 group = 'com.jeeframework'
-version = '0.0.6'
+version = '0.0.7'
 
 description = """jeeframework"""
 
@@ -33,7 +33,7 @@ publishing {
     }
     repositories {
         maven {
-            url "http://61.129.251.155:8088/nexus/content/repositories/releases"
+            url "http://libs.dookoo.net/content/repositories/releases"
             credentials {
                 username "$mavenUser"
                 password "$mavenPassword"
@@ -46,7 +46,7 @@ publishing {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "http://120.24.161.170:8081/nexus/content/groups/public/" }
+    maven { url "http://libs.dookoo.net/content/groups/public/" }
 }
 dependencies {
     compile group: 'junit', name: 'junit', version:'4.12'
