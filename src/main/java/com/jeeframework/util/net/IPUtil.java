@@ -2,9 +2,7 @@ package com.jeeframework.util.net;
 
 import com.jeeframework.util.validate.Validate;
 
-import java.net.Inet6Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -59,7 +57,8 @@ public class IPUtil {
      * 简单描述：判断是否是内网ip
      * <p/>
      * <p/>
-     * tcp/ip协议中，专门保留了三个IP地址区域作为私有地址，其地址范围如下： 10.0.0.0/8：10.0.0.0～10.255.255.255 172.16.0.0/12：172.16.0.0～172.31.255.255 192.168.0.0/16：192.168.0.0～192.168.255.255
+     * tcp/ip协议中，专门保留了三个IP地址区域作为私有地址，其地址范围如下： 10.0.0.0/8：10.0.0.0～10.255.255.255 172.16.0.0/12：172.16.0.0～172.31.255.255
+     * 192.168.0.0/16：192.168.0.0～192.168.255.255
      *
      * @param ip
      * @return
@@ -69,8 +68,7 @@ public class IPUtil {
         return internalIp(addr);
     }
 
-    private  static byte[] textToNumericFormatV4(String src)
-    {
+    private static byte[] textToNumericFormatV4(String src) {
         if (src.length() == 0) {
             return null;
         }
@@ -79,7 +77,7 @@ public class IPUtil {
         String[] s = src.split("\\.", -1);
         long val;
         try {
-            switch(s.length) {
+            switch (s.length) {
                 case 1:
                 /*
                  * When only one part is given, the value is stored directly in
@@ -111,7 +109,7 @@ public class IPUtil {
                     if (val < 0 || val > 0xffffff)
                         return null;
                     res[1] = (byte) ((val >> 16) & 0xff);
-                    res[2] = (byte) (((val & 0xffff) >> 8) &0xff);
+                    res[2] = (byte) (((val & 0xffff) >> 8) & 0xff);
                     res[3] = (byte) (val & 0xff);
                     break;
                 case 3:
@@ -150,7 +148,7 @@ public class IPUtil {
                 default:
                     return null;
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return null;
         }
         return res;
@@ -284,6 +282,51 @@ public class IPUtil {
             sIP = ip.getHostAddress();
         }
         return sIP;
+    }
+
+    /**
+     * 根据IP地址返回Mac 地址
+     *
+     * @return
+     */
+    public static String getMACByIp(String ip) {
+        String macAddress = null;
+        try {
+            InetAddress address = InetAddress.getByName(ip);
+
+            NetworkInterface network = NetworkInterface.getByInetAddress(address);
+            if (network != null) {
+                byte[] mac = network.getHardwareAddress();
+                StringBuilder sb = new StringBuilder();
+                if (mac != null) {
+                    for (int i = 0; i < mac.length; i++) {
+                        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+                    }
+                    macAddress = sb.toString();
+                }
+            }
+
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return macAddress;
+//            Enumeration<NetworkInterface> networks = NetworkInterface.getNetworkInterfaces();
+//            while (networks.hasMoreElements()) {
+//                NetworkInterface network = networks.nextElement();
+//                byte[] mac = network.getHardwareAddress();
+//
+//                if (mac != null) {
+//
+//                    StringBuilder sb = new StringBuilder();
+//                    for (int i = 0; i < mac.length; i++) {
+//                        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+//                    }
+//                }
+//            }
+
+
     }
 
     public static void main(String[] args) {
