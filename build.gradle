@@ -4,7 +4,7 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
 group = 'com.jeeframework'
-version = '0.0.8'
+version = '0.0.9-SNAPSHOT'
 
 description = """jeeframework"""
 
@@ -33,7 +33,7 @@ publishing {
     }
     repositories {
         maven {
-            url "http://libs.dookoo.net/content/repositories/releases"
+            url "http://libs.dookoo.net/content/repositories/snapshots"
             credentials {
                 username "$mavenUser"
                 password "$mavenPassword"
